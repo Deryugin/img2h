@@ -23,16 +23,19 @@ def main():
     im = Image.open(args["input"]) # Can be many different formats.
     pix = im.load()
 
-    if not args["binary"]:
-        print("uint16_t " + args["name"] + "[] = {")
-
     fmt = []
     if args["format"] == "RGB888":
         fmt = format_rgb888
+        if not args["binary"]:
+            print("uint32_t " + args["name"] + "[] = {")
     elif args["format"] == "RGB565":
         fmt = format_rgb565
+        if not args["binary"]:
+            print("uint16_t " + args["name"] + "[] = {")
     elif args["format"] == "BGR565":
         fmt = format_bgr565
+        if not args["binary"]:
+            print("uint16_t " + args["name"] + "[] = {")
 
     if not args["binary"]:
             sys.stdout.write('\t')
